@@ -1,0 +1,27 @@
+//Use a stack to compare elements. Loop through the contents of the given array and compare it to the top of stack.
+If top of stack is bigger thancurrent element that means that current element is the next smallest element for the element in the stack.
+If not, add the current element to the stack. 
+
+
+
+class Solution{
+    
+    public:
+    vector<int> help_classmate(vector<int> arr, int n) 
+    { 
+        // Your code goes here
+        stack<int> s;
+        s.push(-1);
+        vector<int> ans(n);
+        
+        for(int i = n-1; i>=0; i-- ){
+            int curr = arr[i];
+            while(curr<=s.top()){
+                s.pop();
+            }
+            ans[i] = s.top();
+            s.push(curr);
+        }
+        return ans;
+    } 
+};
