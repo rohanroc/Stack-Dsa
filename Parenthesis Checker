@@ -1,0 +1,61 @@
+
+
+bool valid(string s)
+{
+    // code here
+    stack<char> p;
+    char x;
+    
+    // Traversing the Expression
+    
+    for(int i = 0; i<s.size(); i++){
+        if(s[i]=='(' || s[i]=='{' || s[i]=='['){
+        // Push the element in the stack
+            p.push(s[i]);
+        }
+        
+        // IF current current character is not opening
+        // bracket, then it must be closing. So stack
+        // cannot be empty at this point.
+        
+        
+        if(p.empty()){
+            return false;
+        }
+        
+        
+        switch (s[i]){
+            case ')' :
+            // Store the top element in x
+            x = p.top();
+            p.pop();
+            if(x == '{' || x=='[')
+                return false;
+            
+            break;
+        
+            case '}' :
+            x = p.top();
+            p.pop();
+            if(x== '(' || x == '[')
+                return false;
+            
+            break;
+            case ']' :
+            x = p.top();
+            p.pop();
+            if(x =='(' || x == '{')
+                return false;
+            
+            break;
+            
+        }    
+    }
+    // Check Empty Stack
+    if(p.empty()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
